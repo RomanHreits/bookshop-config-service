@@ -1,1 +1,22 @@
-spring.application.name=bookshop-config-service
+server:
+  port: 8888
+  tomcat:
+    threads:
+      max: 50
+      min-spare: 5
+    connection-timeout: 2000 # 2 seconds
+    keep-alive-timeout: 15000 # 15 seconds
+
+spring:
+  application:
+    name: bookshop-config-service
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/RomanHreits/bookshop-config-repo.git
+          default-label: main # default config-repo branch where to look for config files
+          timeout: 2 # use this to avoid long timeouts when the config repo is not reachable
+          clone-on-start: true # clone the config repo on startup instead of on first request
+          force-pull: true
+#          basedir: /config-repo # local directory where the config repo is cloned
