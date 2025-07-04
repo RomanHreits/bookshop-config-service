@@ -1,5 +1,6 @@
 server:
   port: 8888
+  shoutdown: graceful # graceful shutdown
   tomcat:
     threads:
       max: 50
@@ -10,6 +11,8 @@ server:
 spring:
   application:
     name: bookshop-config-service
+  lifecycle:
+    timeout-per-shutdown-phase: 15s
   cloud:
     config:
       server:
